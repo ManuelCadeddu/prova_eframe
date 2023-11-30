@@ -4,21 +4,28 @@
 // When compiling natively:
 #[cfg(not(target_arch = "wasm32"))]
 fn main() -> eframe::Result<()> {
+
     env_logger::init(); // Log to stderr (if you run with `RUST_LOG=debug`).
 
     let native_options = eframe::NativeOptions {
+
         viewport: egui::ViewportBuilder::default()
-            .with_inner_size([400.0, 300.0])
-            .with_min_inner_size([300.0, 220.0]),
+            .with_title("Progetto")
+            .with_fullscreen(true)
+            .with_maximized(true)
+            .with_resizable(false)
+            .with_transparent(true),
         ..Default::default()
     };
+
+
     eframe::run_native(
         "eframe template",
         native_options,
-        Box::new(|cc| Box::new(eframe_template::TemplateApp::new(cc))),
+        Box::new(|cc| Box::new(prova_eframe::TemplateApp::new(cc))),
     )
 }
-
+/*
 // When compiling to web using trunk:
 #[cfg(target_arch = "wasm32")]
 fn main() {
@@ -32,9 +39,9 @@ fn main() {
             .start(
                 "the_canvas_id", // hardcode it
                 web_options,
-                Box::new(|cc| Box::new(eframe_template::TemplateApp::new(cc))),
+                Box::new(|cc| Box::new(prova_eframe::TemplateApp::new(cc))),
             )
             .await
             .expect("failed to start eframe");
     });
-}
+}*/
